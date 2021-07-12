@@ -4,6 +4,7 @@ export class Poll {
   answers: Answer[];
   isPublic: boolean;
   allowUserOptions: boolean;
+  allowMultiSelection: boolean;
   created: Date;
 }
 

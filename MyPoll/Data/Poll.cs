@@ -13,5 +13,6 @@ namespace MyPoll.Data
 		public ICollection<Answer> Answers { get; set; }
 		public bool IsPublic { get; set; }
 		public bool AllowUserOptions { get; set; }
+		public bool AllowMultiSelection { get; set; }
 	}
 }

@@ -23,7 +23,8 @@ export class PollFormComponent implements OnInit {
     this.pollForm = this.formBuilder.group({
       question: ['', Validators.required],
       isPublic: [false],
-      allowUserOptions: [false]
+      allowUserOptions: [false],
+      allowMultiSelection: [false]
     });
 
     this.answersForm = new FormArray([]);
@@ -33,7 +34,8 @@ export class PollFormComponent implements OnInit {
     this.pollForm.patchValue({
       question: '',
       isPublic: false,
-      allowUserOptions: false
+      allowUserOptions: false,
+      allowMultiSelection: false
     });
   }
 
