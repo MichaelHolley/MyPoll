@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { Poll } from '../shared/models';
+import { PollsService } from '../shared/polls.service';
 
 @Component({
   selector: 'app-poll',
@@ -7,9 +10,20 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PollComponent implements OnInit {
 
-  constructor() { }
+  poll: Poll;
+
+  constructor(private route: ActivatedRoute,
+    private pollsService: PollsService) { }
 
   ngOnInit() {
+    this.route.queryParams.subscribe(params => {
+      let pollId = params['id'];
+      if (pollId) {
+        this.pollsService.getPoll(pollId).subscribe(result => {
+          this.poll = result;
+        });
+      }
+    });
   }
 
 }

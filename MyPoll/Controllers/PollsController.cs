@@ -40,12 +40,26 @@ namespace MyPoll.Controllers
 		}
 
 		[HttpPost("[action]")]
-		public IActionResult PostPoll(Poll poll)
+		public IActionResult PostPoll([FromBody] Poll poll)
 		{
 			_context.Polls.Add(poll);
 			_context.SaveChanges();
 
-			return CreatedAtAction("GetPoll", new { id = poll.Id }, poll);
+			return Ok(poll.RemoveCycle());
+		}
+
+		[HttpPost("[action]")]
+		public IActionResult AddAnswer(Guid pollId, [FromBody] Answer answer)
+		{
+			// TODO: implement
+			return Ok();
+		}
+
+		[HttpPut("[action]")]
+		public IActionResult Vote(Guid pollId, Guid answerId)
+		{
+			// TODO: implement
+			return Ok();
 		}
 
 		[HttpDelete("[action]")]

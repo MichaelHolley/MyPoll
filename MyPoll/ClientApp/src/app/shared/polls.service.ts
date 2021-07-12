@@ -1,4 +1,4 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Poll } from './models';
 
@@ -7,11 +7,22 @@ import { Poll } from './models';
 })
 export class PollsService {
 
-  URL = 'api/Polls';
+  API_URL: string = 'api/Polls';
 
   constructor(private httpClient: HttpClient) { }
 
   getPublicPolls() {
-    return this.httpClient.get<Poll[]>(this.URL + '/GetPublicPolls');
+    return this.httpClient.get<Poll[]>(this.API_URL + '/GetPublicPolls');
+  }
+
+  getPoll(id: string) {
+    let params = new HttpParams();
+    params = params.append('id', id);
+
+    return this.httpClient.get<Poll>(this.API_URL + '/GetPoll', { params: params });
+  }
+
+  postPoll(poll: Poll) {
+    return this.httpClient.post<Poll>(this.API_URL + '/PostPoll', poll);
   }
 }

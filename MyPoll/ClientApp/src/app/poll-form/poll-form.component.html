@@ -1,1 +1,34 @@
-<p>poll-form works!</p>
+<div class="my-2">
+  <h3>
+    Create Poll
+  </h3>
+  <form [formGroup]="pollForm" (ngSubmit)="onSubmit()">
+    <div class="form-row">
+      <div class="col-md-12 form-group">
+        <label for="questionInput">Question</label>
+        <input type="text" id="questionInput" class="form-control" formControlName="question" placeholder="Enter your topic..." />
+      </div>
+    </div>
+    <div class="col-md-6 form-check form-switch">
+      <input type="checkbox" id="isPublicInput" class="form-check-input" formControlName="isPublic" />
+      <label class="form-check-label" for="isPublicInput">Is Public Poll</label>
+    </div>
+    <div class="col-md-6 form-check form-switch">
+      <input type="checkbox" id="allowUserOptionsInput" class="form-check-input" formControlName="allowUserOptions" />
+      <label class="form-check-label" for="allowUserOptionsInput">Allow User Options</label>
+    </div>
+    <div class="m-2 p-1">
+      <div *ngFor="let answer of answersForm.controls; let i = index" class="my-1">
+        <div class="row">
+          <input type="text" [formControl]="answersForm.controls[i]" class="col-11 form-control mx-1" [placeholder]="i + 1 + '. Answer'" />
+          <button type="button" class="col btn btn-outline-primary mx-1" (click)="removeAnswerOptionByIndex(i)">Delete</button>
+        </div>
+      </div>
+      <button class="my-1 btn btn-primary" type="button" (click)="addAnswerOption()">+ Answer</button>
+    </div>
+    <div class="text-right">
+      <button class="btn btn-outline-primary mr-2" type="button" (click)="resetForm()">Reset</button>
+      <button class="btn btn-primary" type="submit">Submit</button>
+    </div>
+  </form>
+</div>

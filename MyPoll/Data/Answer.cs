@@ -8,7 +8,7 @@ namespace MyPoll.Data
 		[Key]
 		public Guid Id { get; set; }
 		public string Content { get; set; }
-		public int Votes { get; set; }
+		public int Votes { get; set; } = 0;
 		public Poll Poll { get; set; }
 	}
 }
