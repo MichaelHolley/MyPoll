@@ -29,14 +29,14 @@ namespace MyPoll.Controllers
 		[HttpGet("[action]")]
 		public IActionResult GetPoll(Guid id)
 		{
-			var poll = _context.Polls.Find(id);
+			var poll = _context.Polls.Include(p => p.Answers).SingleOrDefault(p => p.Id.Equals(id));
 
 			if (poll == null)
 			{
 				return NotFound();
 			}
 
-			return Ok(poll);
+			return Ok(poll.RemoveCycle());
 		}
 
 		[HttpPost("[action]")]
@@ -56,10 +56,27 @@ namespace MyPoll.Controllers
 		}
 
 		[HttpPut("[action]")]
-		public IActionResult Vote(Guid pollId, Guid answerId)
+		public IActionResult Vote([FromQuery] Guid pollId, [FromBody] ICollection<Guid> answerIds)
 		{
-			// TODO: implement
-			return Ok();
+			var poll = _context.Polls.SingleOrDefault(p => p.Id.Equals(pollId));
+
+			if (poll == null)
+			{
+				return BadRequest();
+			}
+
+			foreach (var aId in answerIds)
+			{
+				var answer = _context.Answers.SingleOrDefault(a => a.Id.Equals(aId));
+
+				if (answer != null)
+				{
+					answer.Votes = answer.Votes + 1;
+					_context.SaveChanges();
+				}
+			}
+
+			return Ok(poll.RemoveCycle());
 		}
 
 		[HttpDelete("[action]")]

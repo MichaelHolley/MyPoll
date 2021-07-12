@@ -25,4 +25,11 @@ export class PollsService {
   postPoll(poll: Poll) {
     return this.httpClient.post<Poll>(this.API_URL + '/PostPoll', poll);
   }
+
+  vote(poll: Poll, answerIds: any[]) {
+    let params = new HttpParams();
+    params = params.append('pollId', poll.id);
+
+    return this.httpClient.put<Poll>(this.API_URL + '/Vote', answerIds, { params: params });
+  }
 }

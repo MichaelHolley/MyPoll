@@ -9,13 +9,17 @@
         <input type="text" id="questionInput" class="form-control" formControlName="question" placeholder="Enter your topic..." />
       </div>
     </div>
-    <div class="col-md-6 form-check form-switch">
+    <div class="col-md-12 form-check">
       <input type="checkbox" id="isPublicInput" class="form-check-input" formControlName="isPublic" />
       <label class="form-check-label" for="isPublicInput">Is Public Poll</label>
     </div>
-    <div class="col-md-6 form-check form-switch">
+    <div class="col-md-12 form-check">
       <input type="checkbox" id="allowUserOptionsInput" class="form-check-input" formControlName="allowUserOptions" />
       <label class="form-check-label" for="allowUserOptionsInput">Allow User Options</label>
+    </div>
+    <div class="col-md-12 form-check">
+      <input type="checkbox" id="allowMultiSelectionInput" class="form-check-input" formControlName="allowMultiSelection" />
+      <label class="form-check-label" for="allowMultiSelectionInput">Allow Multiple Selections</label>
     </div>
     <div class="m-2 p-1">
       <div *ngFor="let answer of answersForm.controls; let i = index" class="my-1">
