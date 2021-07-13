@@ -10,8 +10,7 @@ import { PollsService } from '../shared/polls.service';
 })
 export class PollResultComponent implements OnInit {
 
-  // options
-  view: any[] = [700, 400];
+  // ngx-charts options
   gradient: boolean = true;
   showLegend: boolean = true;
   showLabels: boolean = true;

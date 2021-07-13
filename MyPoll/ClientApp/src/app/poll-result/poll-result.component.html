@@ -1,12 +1,10 @@
 <div *ngIf="poll">
-  <div class="row justify-content-center">
+  <div class="row justify-content-center" style="height: 400px">
     <ngx-charts-pie-chart [results]="data"
-                          [view]="view"
                           [gradient]="gradient"
                           [legend]="showLegend"
                           [labels]="showLabels"
-                          [doughnut]="isDoughnut"
-                          [legendPosition]="legendPosition">
+                          [doughnut]="isDoughnut">
     </ngx-charts-pie-chart>
   </div>
   <div class="my-2">
