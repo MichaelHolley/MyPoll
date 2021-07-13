@@ -10,7 +10,16 @@ import { PollsService } from '../shared/polls.service';
 })
 export class PollResultComponent implements OnInit {
 
+  // options
+  view: any[] = [700, 400];
+  gradient: boolean = true;
+  showLegend: boolean = true;
+  showLabels: boolean = true;
+  isDoughnut: boolean = true;
+  legendPosition: string = 'below';
+
   poll: Poll;
+  data: { name: string, value: number }[];
 
   constructor(private pollsService: PollsService,
     private route: ActivatedRoute) { }
@@ -21,9 +30,16 @@ export class PollResultComponent implements OnInit {
       if (pollId) {
         this.pollsService.getPoll(pollId).subscribe(result => {
           this.poll = result;
+          this.data = [];
+
+          if (result.answers) {
+            result.answers.forEach(a => {
+              this.data.push({ name: a.content, value: a.votes });
+            });
+          }
         });
+
       }
     });
   }
-
 }

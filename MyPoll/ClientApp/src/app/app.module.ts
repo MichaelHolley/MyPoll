@@ -11,6 +11,8 @@ import { PollComponent } from './poll/poll.component';
 import { PollFormComponent } from './poll-form/poll-form.component';
 import { PollsService } from './shared/polls.service';
 import { PollResultComponent } from './poll-result/poll-result.component';
+import { NgxChartsModule } from '@swimlane/ngx-charts';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 
 @NgModule({
@@ -28,6 +30,8 @@ import { PollResultComponent } from './poll-result/poll-result.component';
     HttpClientModule,
     FormsModule,
     ReactiveFormsModule,
+    NgxChartsModule,
+    BrowserAnimationsModule,
     RouterModule.forRoot([
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'public-polls', component: PublicPollsComponent },

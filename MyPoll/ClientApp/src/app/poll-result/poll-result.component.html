@@ -1,1 +1,17 @@
-<p>poll-result works!</p>
+<div *ngIf="poll">
+  <div class="row justify-content-center">
+    <ngx-charts-pie-chart [results]="data"
+                          [view]="view"
+                          [gradient]="gradient"
+                          [legend]="showLegend"
+                          [labels]="showLabels"
+                          [doughnut]="isDoughnut"
+                          [legendPosition]="legendPosition">
+    </ngx-charts-pie-chart>
+  </div>
+  <div>
+    <p *ngFor="let answer of poll.answers" style="font-size: 2em">
+      {{ answer.content + ': ' + answer.votes + ' Votes' }}
+    </p>
+  </div>
+</div>
