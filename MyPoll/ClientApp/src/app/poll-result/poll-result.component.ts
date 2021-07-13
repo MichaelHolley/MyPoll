@@ -21,8 +21,6 @@ export class PollResultComponent implements OnInit {
       if (pollId) {
         this.pollsService.getPoll(pollId).subscribe(result => {
           this.poll = result;
-
-          console.log(result);
         });
       }
     });

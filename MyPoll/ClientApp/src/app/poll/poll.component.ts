@@ -51,7 +51,6 @@ export class PollComponent implements OnInit {
     this.answers.filter(a => a.selected == true).forEach(a => answerIds.push(a.id));
 
     this.pollsService.vote(this.poll, answerIds).subscribe(result => {
-      console.log(result);
       this.router.navigate(['/poll-result'], {
         queryParams: { id: result.id }
       });
