@@ -39,7 +39,8 @@ export class PollComponent implements OnInit {
   }
 
   onAnswerClicked(answer, event) {
-    if (!this.poll.allowMultiSelection && this.answers.filter(a => a.selected == true).length > 0) {
+    let alreadySelected = this.answers.filter(a => a.selected == true);
+    if (!this.poll.allowMultiSelection && alreadySelected.length > 0) {
       answer.selected = false;
       event.target.checked = false;
     } else {
@@ -51,11 +52,13 @@ export class PollComponent implements OnInit {
     let answerIds = [];
     this.answers.filter(a => a.selected == true).forEach(a => answerIds.push(a.id));
 
-    this.pollsService.vote(this.poll, answerIds).subscribe(result => {
-      this.router.navigate(['/poll-result'], {
-        queryParams: { id: result.id }
+    if (answerIds.length > 0) {
+      this.pollsService.vote(this.poll, answerIds).subscribe(result => {
+        this.router.navigate(['/poll-result'], {
+          queryParams: { id: result.id }
+        });
       });
-    });
+    }
   }
 
   setPoll(poll: Poll) {

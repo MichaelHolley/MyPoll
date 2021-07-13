@@ -9,9 +9,22 @@
                           [legendPosition]="legendPosition">
     </ngx-charts-pie-chart>
   </div>
-  <div>
-    <p *ngFor="let answer of poll.answers" style="font-size: 2em">
-      {{ answer.content + ': ' + answer.votes + ' Votes' }}
-    </p>
+  <div class="my-2">
+    <table class="table table-hover">
+      <thead class="thead-light">
+        <tr>
+          <th>Option</th>
+          <th># of Votes</th>
+          <th>Created at</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let answer of poll.answers">
+          <td>{{ answer.content }}</td>
+          <td>{{ answer.votes }}</td>
+          <td>{{ answer.created | date:'medium' }}</td>
+        </tr>
+      </tbody>
+    </table>
   </div>
 </div>

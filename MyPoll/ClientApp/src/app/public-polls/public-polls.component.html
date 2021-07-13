@@ -15,6 +15,7 @@
           <th>
             # of Votes
           </th>
+          <th></th>
         </tr>
       </thead>
       <tbody>
@@ -27,6 +28,10 @@
           </td>
           <td>
             {{ getNumberOfVotes(poll) }}
+          </td>
+          <td>
+            <a class="mx-2" [routerLink]="['/poll']" [queryParams]="{id: poll.id}" title="Vote"><fa-icon [icon]="faCheck"></fa-icon></a>
+            <a class="mx-2" [routerLink]="['/poll-result']" [queryParams]="{id: poll.id}" title="Result"><fa-icon [icon]="faPoll"></fa-icon></a>
           </td>
         </tr>
       </tbody>

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { faCheck, faPoll } from '@fortawesome/free-solid-svg-icons';
 import { Poll } from '../shared/models';
 import { PollsService } from '../shared/polls.service';
 
@@ -8,6 +9,9 @@ import { PollsService } from '../shared/polls.service';
   styles: []
 })
 export class PublicPollsComponent implements OnInit {
+
+  faCheck = faCheck;
+  faPoll = faPoll;
 
   publicPolls: Poll[] = [];
 
