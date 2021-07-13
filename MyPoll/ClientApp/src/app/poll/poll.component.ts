@@ -78,6 +78,7 @@ export class PollComponent implements OnInit {
         this.pollsService.addAnswer(this.poll.id, this.answerInput).subscribe(result => {
           if (result) {
             this.showAnswerInput = false;
+            this.answerInput = '';
             this.setPoll(result);
           }
         });

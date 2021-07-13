@@ -55,7 +55,7 @@ export class PollFormComponent implements OnInit {
     let postPoll = this.pollForm.value as Poll;
     postPoll.answers = [];
 
-    this.answersForm.value.forEach(option => {
+    this.answersForm.value.filter(a => a != null && a.length > 0).forEach(option => {
       postPoll.answers.push({ id: undefined, content: option, poll: undefined, votes: 0, created: undefined });
     });
 

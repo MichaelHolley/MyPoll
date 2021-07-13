@@ -14,6 +14,7 @@ import { PollResultComponent } from './poll-result/poll-result.component';
 import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { InputValidationComponent } from './shared/input-validation/input-validation.component';
 
 
 @NgModule({
@@ -25,6 +26,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
     PollComponent,
     PollFormComponent,
     PollResultComponent,
+    InputValidationComponent
   ],
   imports: [
     BrowserModule.withServerTransition({ appId: 'ng-cli-universal' }),

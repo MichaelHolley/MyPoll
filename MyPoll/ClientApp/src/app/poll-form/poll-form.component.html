@@ -5,8 +5,8 @@
   <form [formGroup]="pollForm" (ngSubmit)="onSubmit()">
     <div class="form-row">
       <div class="col-md-12 form-group">
-        <label for="questionInput">Question</label>
         <input type="text" id="questionInput" class="form-control" formControlName="question" placeholder="Enter your topic..." />
+        <input-validation [invalid]="pollForm.controls.question.invalid" invalidMessage="Required"></input-validation>
       </div>
     </div>
     <div class="col-md-12 form-check">
