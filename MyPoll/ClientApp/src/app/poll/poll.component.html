@@ -14,6 +14,8 @@
     <button class="btn btn-primary col-2 ml-3" type="button" (click)="handleAddAnswer()"><fa-icon [icon]="faPlusCircle"></fa-icon>{{ showAnswerInput ? '' : ' Answer'}}</button>
   </div>
 
-  <button type="button" class="btn btn-primary" (click)="submitVote()"><fa-icon [icon]="faCheckCircle"></fa-icon> Vote</button>
+  <div class="text-right" *ngIf="answers && answers.length > 0">
+    <button type="button" class="btn btn-primary" (click)="submitVote()"><fa-icon [icon]="faCheckCircle"></fa-icon> Vote</button>
+  </div>
 
 </div>

@@ -73,7 +73,6 @@ export class PollComponent implements OnInit {
 
   handleAddAnswer() {
     if (this.showAnswerInput) {
-      console.log(this.answerInput);
       if (this.answerInput != null && this.answerInput.length > 0) {
         this.pollsService.addAnswer(this.poll.id, this.answerInput).subscribe(result => {
           if (result) {

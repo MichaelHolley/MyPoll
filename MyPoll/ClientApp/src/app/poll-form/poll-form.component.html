@@ -21,18 +21,20 @@
       <input type="checkbox" id="allowMultiSelectionInput" class="form-check-input" formControlName="allowMultiSelection" />
       <label class="form-check-label" for="allowMultiSelectionInput">Allow Multiple Selections</label>
     </div>
-    <div class="m-2 p-1">
-      <div *ngFor="let answer of answersForm.controls; let i = index" class="my-1">
+    <div class="my-2">
+      <div *ngFor="let answer of answersForm.controls; let i = index" class="my-1 mx-3">
         <div class="row">
           <input type="text" [formControl]="answersForm.controls[i]" class="col-11 form-control px-1" [placeholder]="i + 1 + '. Answer'" />
-          <button type="button" class="col btn btn-outline-primary ml-3" (click)="removeAnswerOptionByIndex(i)"><fa-icon [icon]="faTrash"></fa-icon></button>
+          <div class="p-1">
+            <button type="button" class="col btn btn-outline-primary" (click)="removeAnswerOptionByIndex(i)"><fa-icon [icon]="faTrash"></fa-icon></button>
+          </div>
         </div>
       </div>
       <button class="my-1 btn btn-primary" type="button" (click)="addAnswerOption()"><fa-icon [icon]="faPlusCircle"></fa-icon> Answer</button>
     </div>
     <div class="text-right">
-      <button class="btn btn-outline-primary mr-2" type="button" (click)="resetForm()"><fa-icon [icon]="faUndo"></fa-icon> Reset</button>
-      <button class="btn btn-primary" type="submit"><fa-icon [icon]="faShare"></fa-icon> Submit</button>
+      <button class="btn btn-outline-primary m-1" type="button" (click)="resetForm()"><fa-icon [icon]="faUndo"></fa-icon> Reset</button>
+      <button class="btn btn-primary m-1" type="submit"><fa-icon [icon]="faShare"></fa-icon> Submit</button>
     </div>
   </form>
 </div>
