@@ -15,6 +15,7 @@ import { NgxChartsModule } from '@swimlane/ngx-charts';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { InputValidationComponent } from './shared/input-validation/input-validation.component';
+import { PollLocalStorageService } from './shared/poll-local-storage.service';
 
 
 @NgModule({
@@ -46,7 +47,8 @@ import { InputValidationComponent } from './shared/input-validation/input-valida
   ],
   providers: [
     FormBuilder,
-    PollsService
+    PollsService,
+    PollLocalStorageService
   ],
   bootstrap: [AppComponent]
 })

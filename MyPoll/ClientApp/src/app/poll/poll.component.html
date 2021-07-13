@@ -1,4 +1,11 @@
-<div *ngIf="poll">
+<div *ngIf="alreadyVoted">
+  <h3>You have already voted in this poll.</h3>
+  <p>
+    You will be redirected to its results. If not - click this button:
+    <button type="button" class="btn btn-outline-primary m-1" [routerLink]="['/poll-result']" [queryParams]="{id: pollId}"><fa-icon [icon]="faPoll"></fa-icon> Results</button>
+  </p>
+</div>
+<div *ngIf="poll && !alreadyVoted">
   <h3>{{poll.question}}</h3>
   <div class="my-2">
     <div *ngFor="let answer of answers; let i = index">
@@ -15,7 +22,8 @@
   </div>
 
   <div class="text-right" *ngIf="answers && answers.length > 0">
-    <button type="button" class="btn btn-primary" (click)="submitVote()"><fa-icon [icon]="faCheckCircle"></fa-icon> Vote</button>
+    <button type="button" class="btn btn-outline-primary m-1" [routerLink]="['/poll-result']" [queryParams]="{id: poll.id}"><fa-icon [icon]="faPoll"></fa-icon> Results</button>
+    <button type="button" class="btn btn-primary m-1" (click)="submitVote()"><fa-icon [icon]="faCheckCircle"></fa-icon> Vote</button>
   </div>
 
 </div>

@@ -37,7 +37,6 @@ export class PollResultComponent implements OnInit {
             });
           }
         });
-
       }
     });
   }

@@ -1,8 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
-import { faCheckCircle, faPlusCircle } from '@fortawesome/free-solid-svg-icons';
+import { faCheckCircle, faPlusCircle, faPoll } from '@fortawesome/free-solid-svg-icons';
 import { Poll } from '../shared/models';
+import { PollLocalStorageService } from '../shared/poll-local-storage.service';
 import { PollsService } from '../shared/polls.service';
 
 @Component({
@@ -14,7 +15,12 @@ export class PollComponent implements OnInit {
 
   faCheckCircle = faCheckCircle;
   faPlusCircle = faPlusCircle;
+  faPoll = faPoll;
 
+  alreadyVoted = false;
+  timeout;
+
+  pollId: string;
   poll: Poll;
   answers: { id: string, selected: boolean, content: string }[] = [];
 
@@ -23,19 +29,34 @@ export class PollComponent implements OnInit {
 
   constructor(private route: ActivatedRoute,
     private pollsService: PollsService,
-    private router: Router) { }
+    private router: Router,
+    private pollLocalStorageService: PollLocalStorageService) { }
 
   ngOnInit() {
     this.route.queryParams.subscribe(params => {
-      let pollId = params['id'];
-      if (pollId) {
-        this.pollsService.getPoll(pollId).subscribe(result => {
-          if (result) {
-            this.setPoll(result);
-          }
-        });
+      this.pollId = params['id'];
+      if (this.pollId) {
+        if (this.pollLocalStorageService.hasAlreadyVoted(this.pollId)) {
+          this.alreadyVoted = true;
+          this.timeout = setTimeout(() => {
+            this.router.navigate(['/poll-result'], {
+              queryParams: { id: this.pollId }
+            }); }, 4000);
+        } else {
+          this.pollsService.getPoll(this.pollId).subscribe(result => {
+            if (result) {
+              this.setPoll(result);
+            }
+          });
+        }
       }
     });
+  }
+
+  ngOnDestroy() {
+    if (this.timeout) {
+      clearTimeout(this.timeout);
+    }
   }
 
   onAnswerClicked(answer, event) {
@@ -54,6 +75,8 @@ export class PollComponent implements OnInit {
 
     if (answerIds.length > 0) {
       this.pollsService.vote(this.poll, answerIds).subscribe(result => {
+        this.pollLocalStorageService.addVotedPollId(result.id);
+
         this.router.navigate(['/poll-result'], {
           queryParams: { id: result.id }
         });
