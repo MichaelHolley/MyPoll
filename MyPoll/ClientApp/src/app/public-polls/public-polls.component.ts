@@ -19,4 +19,29 @@ export class PublicPollsComponent implements OnInit {
     });
   }
 
+  getNumberOfVotes(poll: Poll) {
+    let sum = 0;
+    if (poll.answers) {
+      poll.answers.forEach(a => {
+        sum += a.votes;
+      });
+    }
+
+    return sum;
+  }
+
+  getListOfAnswers(poll: Poll) {
+    let listOfAnswers = '';
+    if (poll.answers) {
+      poll.answers.forEach((a, index) => {
+        listOfAnswers += a.content;
+        if (index < poll.answers.length - 1) {
+          listOfAnswers += ' | ';
+        }
+      });
+    }
+
+    return listOfAnswers;
+  }
+
 }

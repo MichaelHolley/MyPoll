@@ -1,1 +1,40 @@
-<p>{{ publicPolls.length }}</p>
+<div>
+  <h3>
+    Public Polls
+  </h3>
+  <div>
+    <table class="table table-hover">
+      <thead class="thead-light">
+        <tr>
+          <th>
+            Question
+          </th>
+          <th>
+            Options
+          </th>
+          <th>
+            # of Votes
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let poll of publicPolls" [routerLink]="['/poll']" [queryParams]="{id: poll.id}">
+          <td>
+            {{poll.question}}
+          </td>
+          <td>
+            {{ getListOfAnswers(poll) }}
+          </td>
+          <td>
+            {{ getNumberOfVotes(poll) }}
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+<style>
+  table > tbody > tr:hover {
+    cursor: pointer;
+  }
+</style>

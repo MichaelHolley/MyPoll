@@ -7,6 +7,13 @@ namespace MyPoll.Data
 {
 	public static class RemoveCycleExtension
 	{
+		public static ICollection<Poll> RemoveCycle(this IQueryable<Poll> polls)
+		{
+			var result = polls.Select(p => p.RemoveCycle()).ToList();
+
+			return result;
+		}
+
 		public static Poll RemoveCycle(this Poll poll)
 		{
 			poll.Answers = poll.Answers.Select(a =>

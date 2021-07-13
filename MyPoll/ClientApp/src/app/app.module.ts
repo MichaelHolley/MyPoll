@@ -32,7 +32,7 @@ import { PollResultComponent } from './poll-result/poll-result.component';
       { path: '', component: HomeComponent, pathMatch: 'full' },
       { path: 'public-polls', component: PublicPollsComponent },
       { path: 'poll', component: PollComponent },
-      { path: 'poll-result', component: PollComponent },
+      { path: 'poll-result', component: PollResultComponent },
       { path: 'create-poll', component: PollFormComponent },
     ])
   ],

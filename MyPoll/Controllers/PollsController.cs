@@ -23,7 +23,7 @@ namespace MyPoll.Controllers
 		[HttpGet("[action]")]
 		public IActionResult GetPublicPolls()
 		{
-			return Ok(_context.Polls.Where(p => p.IsPublic).ToList());
+			return Ok(_context.Polls.Include(p => p.Answers).Where(p => p.IsPublic).RemoveCycle());
 		}
 
 		[HttpGet("[action]")]

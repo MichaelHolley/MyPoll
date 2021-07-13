@@ -24,8 +24,8 @@
     <div class="m-2 p-1">
       <div *ngFor="let answer of answersForm.controls; let i = index" class="my-1">
         <div class="row">
-          <input type="text" [formControl]="answersForm.controls[i]" class="col-11 form-control mx-1" [placeholder]="i + 1 + '. Answer'" />
-          <button type="button" class="col btn btn-outline-primary mx-1" (click)="removeAnswerOptionByIndex(i)">Delete</button>
+          <input type="text" [formControl]="answersForm.controls[i]" class="col-10 form-control mx-1" [placeholder]="i + 1 + '. Answer'" />
+          <button type="button" class="col-1 btn btn-outline-primary mx-1" (click)="removeAnswerOptionByIndex(i)">Delete</button>
         </div>
       </div>
       <button class="my-1 btn btn-primary" type="button" (click)="addAnswerOption()">+ Answer</button>
