@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormControl } from '@angular/forms';
 import { ActivatedRoute, Router } from '@angular/router';
+import { faCheckCircle, faPlusCircle } from '@fortawesome/free-solid-svg-icons';
 import { Poll } from '../shared/models';
 import { PollsService } from '../shared/polls.service';
 
@@ -11,8 +12,14 @@ import { PollsService } from '../shared/polls.service';
 })
 export class PollComponent implements OnInit {
 
+  faCheckCircle = faCheckCircle;
+  faPlusCircle = faPlusCircle;
+
   poll: Poll;
   answers: { id: string, selected: boolean, content: string }[] = [];
+
+  showAnswerInput = false;
+  answerInput: string = '';
 
   constructor(private route: ActivatedRoute,
     private pollsService: PollsService,
@@ -23,15 +30,9 @@ export class PollComponent implements OnInit {
       let pollId = params['id'];
       if (pollId) {
         this.pollsService.getPoll(pollId).subscribe(result => {
-          this.poll = result;
-
-          result.answers.forEach(a => {
-            this.answers.push({
-              selected: false,
-              id: a.id,
-              content: a.content
-            });
-          });
+          if (result) {
+            this.setPoll(result);
+          }
         });
       }
     });
@@ -55,6 +56,35 @@ export class PollComponent implements OnInit {
         queryParams: { id: result.id }
       });
     });
+  }
+
+  setPoll(poll: Poll) {
+    this.poll = poll;
+    this.answers = [];
+
+    poll.answers.forEach(a => {
+      this.answers.push({
+        selected: false,
+        id: a.id,
+        content: a.content
+      });
+    });
+  }
+
+  handleAddAnswer() {
+    if (this.showAnswerInput) {
+      console.log(this.answerInput);
+      if (this.answerInput != null && this.answerInput.length > 0) {
+        this.pollsService.addAnswer(this.poll.id, this.answerInput).subscribe(result => {
+          if (result) {
+            this.showAnswerInput = false;
+            this.setPoll(result);
+          }
+        });
+      }
+    } else {
+      this.showAnswerInput = !this.showAnswerInput;
+    }
   }
 
 }

@@ -9,6 +9,11 @@
     </div>
   </div>
 
-  <button type="button" class="btn btn-primary" (click)="submitVote()">Vote</button>
+  <div class="my-2 row">
+    <input type="text" *ngIf="showAnswerInput" class="col form-control" [(ngModel)]="answerInput"/>
+    <button class="btn btn-primary col-2 ml-3" type="button" (click)="handleAddAnswer()"><fa-icon [icon]="faPlusCircle"></fa-icon>{{ showAnswerInput ? '' : ' Answer'}}</button>
+  </div>
+
+  <button type="button" class="btn btn-primary" (click)="submitVote()"><fa-icon [icon]="faCheckCircle"></fa-icon> Vote</button>
 
 </div>

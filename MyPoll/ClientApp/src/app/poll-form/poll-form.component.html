@@ -24,15 +24,15 @@
     <div class="m-2 p-1">
       <div *ngFor="let answer of answersForm.controls; let i = index" class="my-1">
         <div class="row">
-          <input type="text" [formControl]="answersForm.controls[i]" class="col-10 form-control mx-1" [placeholder]="i + 1 + '. Answer'" />
-          <button type="button" class="col-1 btn btn-outline-primary mx-1" (click)="removeAnswerOptionByIndex(i)">Delete</button>
+          <input type="text" [formControl]="answersForm.controls[i]" class="col-11 form-control px-1" [placeholder]="i + 1 + '. Answer'" />
+          <button type="button" class="col btn btn-outline-primary ml-3" (click)="removeAnswerOptionByIndex(i)"><fa-icon [icon]="faTrash"></fa-icon></button>
         </div>
       </div>
-      <button class="my-1 btn btn-primary" type="button" (click)="addAnswerOption()">+ Answer</button>
+      <button class="my-1 btn btn-primary" type="button" (click)="addAnswerOption()"><fa-icon [icon]="faPlusCircle"></fa-icon> Answer</button>
     </div>
     <div class="text-right">
-      <button class="btn btn-outline-primary mr-2" type="button" (click)="resetForm()">Reset</button>
-      <button class="btn btn-primary" type="submit">Submit</button>
+      <button class="btn btn-outline-primary mr-2" type="button" (click)="resetForm()"><fa-icon [icon]="faUndo"></fa-icon> Reset</button>
+      <button class="btn btn-primary" type="submit"><fa-icon [icon]="faShare"></fa-icon> Submit</button>
     </div>
   </form>
 </div>

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { faPlusCircle, faShare, faTrash, faUndoAlt } from '@fortawesome/free-solid-svg-icons';
 import { Answer, Poll } from '../shared/models';
 import { PollsService } from '../shared/polls.service';
 
@@ -10,6 +11,11 @@ import { PollsService } from '../shared/polls.service';
   styles: []
 })
 export class PollFormComponent implements OnInit {
+
+  faPlusCircle = faPlusCircle;
+  faShare = faShare;
+  faUndo = faUndoAlt;
+  faTrash = faTrash;
 
   pollForm: FormGroup;
   answersForm: FormArray;
@@ -37,6 +43,8 @@ export class PollFormComponent implements OnInit {
       allowUserOptions: false,
       allowMultiSelection: false
     });
+
+    this.answersForm.clear();
   }
 
   onSubmit() {

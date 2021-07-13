@@ -48,11 +48,29 @@ namespace MyPoll.Controllers
 			return Ok(poll.RemoveCycle());
 		}
 
-		[HttpPost("[action]")]
-		public IActionResult AddAnswer(Guid pollId, [FromBody] Answer answer)
+		[HttpPut("[action]")]
+		public IActionResult AddAnswer([FromQuery] Guid pollId, [FromQuery] string answer)
 		{
-			// TODO: implement
-			return Ok();
+			var poll = _context.Polls.Include(p => p.Answers).SingleOrDefault(p => p.Id.Equals(pollId));
+
+			if (poll == null || answer == null)
+			{
+				return BadRequest();
+			}
+
+			if (!poll.Answers.Any(a => a.Content.ToLower().Equals(answer.ToLower())))
+			{
+				poll.Answers.Add(new Answer()
+				{
+					Content = answer,
+					Votes = 0,
+					Poll = poll
+				});
+
+				_context.SaveChanges();
+			}
+
+			return Ok(poll.RemoveCycle());
 		}
 
 		[HttpPut("[action]")]

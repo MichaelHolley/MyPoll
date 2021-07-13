@@ -1,7 +1,7 @@
 <header>
   <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
     <div class="container">
-      <a class="navbar-brand" [routerLink]="['/']">MyPoll</a>
+      <a class="navbar-brand" [routerLink]="['/']"><fa-icon [icon]="faVoteYea"></fa-icon> MyPoll</a>
       <button class="navbar-toggler"
               type="button"
               data-toggle="collapse"
@@ -17,13 +17,13 @@
           <li class="nav-item"
               [routerLinkActive]="['link-active']"
               [routerLinkActiveOptions]="{ exact: true }">
-            <a class="nav-link text-dark" [routerLink]="['/']">Home</a>
+            <a class="nav-link text-dark" [routerLink]="['/']"><fa-icon [icon]="faHome"></fa-icon> Home</a>
           </li>
           <li class="nav-item" [routerLinkActive]="['link-active']">
-            <a class="nav-link text-dark" [routerLink]="['/public-polls']">Public Polls</a>
+            <a class="nav-link text-dark" [routerLink]="['/public-polls']"><fa-icon [icon]="faEye"></fa-icon> Public Polls</a>
           </li>
           <li class="nav-item" [routerLinkActive]="['link-active']">
-            <a class="nav-link text-dark" [routerLink]="['/create-poll']">New Poll</a>
+            <a class="nav-link text-dark" [routerLink]="['/create-poll']"><fa-icon [icon]="faPlusCircle"></fa-icon> New Poll</a>
           </li>
         </ul>
       </div>

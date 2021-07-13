@@ -1,6 +1,6 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Poll } from './models';
+import { Answer, Poll } from './models';
 
 @Injectable({
   providedIn: 'root'
@@ -31,5 +31,13 @@ export class PollsService {
     params = params.append('pollId', poll.id);
 
     return this.httpClient.put<Poll>(this.API_URL + '/Vote', answerIds, { params: params });
+  }
+
+  addAnswer(pollId: string, answer: string) {
+    let params = new HttpParams();
+    params = params.append('pollId', pollId);
+    params = params.append('answer', answer);
+
+    return this.httpClient.put<any>(this.API_URL + '/AddAnswer', undefined, { params: params });
   }
 }
