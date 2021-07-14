@@ -34,6 +34,7 @@ export class PollFormComponent implements OnInit {
     });
 
     this.answersForm = new FormArray([]);
+    this.addAnswerOption();
   }
 
   resetForm() {

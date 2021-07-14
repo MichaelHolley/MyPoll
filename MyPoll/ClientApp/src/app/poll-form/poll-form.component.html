@@ -25,7 +25,7 @@
       <div *ngFor="let answer of answersForm.controls; let i = index" class="my-1 mx-3">
         <div class="row">
           <input type="text" [formControl]="answersForm.controls[i]" class="col-11 form-control px-1" [placeholder]="i + 1 + '. Answer'" />
-          <div class="p-1">
+          <div class="px-1">
             <button type="button" class="col btn btn-outline-primary" (click)="removeAnswerOptionByIndex(i)"><fa-icon [icon]="faTrash"></fa-icon></button>
           </div>
         </div>

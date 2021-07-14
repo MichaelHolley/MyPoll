@@ -2,7 +2,7 @@
 
 namespace MyPoll.Data
 {
-	public class EntityBase
+	public abstract class EntityBase
 	{
 		public DateTime Created { get; set; }
 	}

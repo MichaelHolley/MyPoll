@@ -29,8 +29,9 @@ export class PollResultComponent implements OnInit {
       if (pollId) {
         this.pollsService.getPoll(pollId).subscribe(result => {
           this.poll = result;
-          this.data = [];
+          this.poll.answers = this.poll.answers.sort((a1, a2) => a2.votes - a1.votes);
 
+          this.data = [];
           if (result.answers) {
             result.answers.forEach(a => {
               this.data.push({ name: a.content, value: a.votes });
